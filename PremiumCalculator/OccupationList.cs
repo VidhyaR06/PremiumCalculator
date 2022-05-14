@@ -12,5 +12,4 @@ namespace PremiumCalculator
             this.Rating = rating;
         }
     }
-
 }

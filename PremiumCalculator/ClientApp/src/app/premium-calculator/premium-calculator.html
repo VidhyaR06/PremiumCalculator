@@ -25,23 +25,18 @@
   </tr>
   <tr>
     <td><label>Age</label></td>
-    <td><input type="text" class="form-control" disabled [(ngModel)]="showAge" placeholder="Age" /></td>
+    <td><input type="text" class="form-control" disabled [(ngModel)]="showAge" placeholder="Enter Age" /></td>
   </tr>
   <tr>
     <td>
       Occupation
     </td>
     <td>
-      <select (change)="selectedOccupationChange($event)">
+      <select (change)="selectedOccupationChange($event)" class="form-control">
         <option *ngFor="let occupation of occupations" value={{occupation.rating}}>
           {{occupation.name}}
         </option>
-      </select>
-      <select name="occupation"
-              id="occupation"
-              class="form-control">
-        <option>1</option>
-      </select>
+      </select>     
     </td>
   </tr>
 

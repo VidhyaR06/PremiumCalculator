@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections;
 
 namespace PremiumCalculator.Controllers
 {
@@ -10,7 +9,7 @@ namespace PremiumCalculator.Controllers
         [HttpGet]
         public IEnumerable<OccupationList> Get()
         {
-            List<OccupationList> occupationList = new List<OccupationList>()
+            List<OccupationList> occupationList = new()
             {
                 new OccupationList("Cleaner", "Light Manual"),
                 new OccupationList("Doctor", "Professional"),
@@ -22,7 +21,7 @@ namespace PremiumCalculator.Controllers
             return occupationList;
         }
 
-        [HttpGet]
+        [HttpGet("getOccupationFactor/{occupationName}")]
         public double GetOccupationFactor(string occupationName)
         {
             double occupationFactor = 0;
