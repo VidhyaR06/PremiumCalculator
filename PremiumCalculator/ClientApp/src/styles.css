@@ -14,3 +14,17 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+.form-control {
+  width: 30% !important
+}
+
+div {
+  margin-bottom: 1%;
+}
+
+.right {
+  float: right;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}

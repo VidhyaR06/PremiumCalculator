@@ -1,57 +1,77 @@
 
-<div style="text-align:center">
-  <h1>
-    Premium Calculator
-  </h1>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+</script>
+<div style="margin-top:1%;">
+  <h3>
+    Monthly Premium Calculator
+  </h3>
+  <br />
 </div>
-<h3>Member Profile </h3>
-<table>
-  <tr>
-    <td>
-      Name
-    </td>
-    <td>
-      <input id="txtName" name="Name" class="form-control" placeholder="Enter Your Fullname" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Date of Birth
-    </td>
-    <td>
-      <input id="txtDOB" name="DOB" class="form-control"
-             placeholder="Enter Your Date of Birth" type="date" (change)="calculateAge($event)" />
-    </td>
-  </tr>
-  <tr>
-    <td><label>Age</label></td>
-    <td><input type="text" class="form-control" disabled [(ngModel)]="showAge" placeholder="Enter Age" /></td>
-  </tr>
-  <tr>
-    <td>
-      Occupation
-    </td>
-    <td>
-      <select (change)="selectedOccupationChange($event)" class="form-control">
+<h5>Member Profile </h5>
+<form #userform="ngForm" (ngSubmit)="calculatePremium()">
+  <div class="form-group">
+    <div class="form-row">
+      <div class="form-group col">
+        <label> Name</label>
+        <input id="txtName" name="name" class="form-control" ngModel #name="ngModel"
+               required
+               minlength="2"
+               maxlength="30"
+               pattern="[a-z A-Z ]*" placeholder="Enter Your Fullname" />
+        <span *ngIf="name.touched && name.invalid" 
+              style="color:red; font-size:small;">
+          Name is required and can have only alphabets.
+        </span>
+      </div>
+      <div class="form-group">
+        <label>
+          Date of Birth
+        </label>
+        <input id="txtDOB" name="dob" class="form-control" type="date" required (change)="calculateAge($event)"
+               ngModel #dob="ngModel"/>
+        <span *ngIf="dob.touched && dob.invalid"
+              style="color:red; font-size:small;">
+          Date of Birth is required.
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Age</label><input type="text" class="form-control" disabled [(ngModel)]="showAge" required placeholder="Age calculates based on provided DOB" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>
+        Occupation
+      </label>
+      <select (change)="selectedOccupationChange($event)" name="occupation" class="form-control" required ngModel #occupation="ngModel">
+        <option value="" disabled selected>Select Occupation</option>
         <option *ngFor="let occupation of occupations" value={{occupation.rating}}>
           {{occupation.name}}
         </option>
-      </select>     
-    </td>
-  </tr>
+      </select>
+      <span *ngIf="occupation.touched && occupation.invalid"
+            style="color:red; font-size:small;">
+        Select any Occupation.
+      </span>
+    </div>
+    <div class="form-row">
+      <label>Death - Sum Insured</label>
+      <input type="text" placeholder="Enter Death - Sum Insured Amount" name="sumInsured" required class="form-control" [(ngModel)]="sumInsuredAmount"
+             pattern="^[0-9]*$"
+             ngModel #sumInsured="ngModel" />
+      <span *ngIf="occupation.touched && occupation.invalid"
+            style="color:red; font-size:small;">
+       
+        Death - Sum Insured Amount is required and can have only digits.
+      </span>
+    </div>
+    <div>
+      <button class="btn btn-primary" [disabled]="userform.invalid" (click)="calculatePremium()" ng-disabled="formname.$invalid">Calculate</button>
+    </div>
+    <br />
+    <div class="form-row" style="margin-right:60%;">
+      <label style="font-size:18px;">Monthly Premium</label>
+      <strong class="right">{{ premiumAmount }}</strong>
+    </div>
+  </div>
+</form>
 
-  <tr>
-    <td><label>Death - Sum Insured</label></td>
-    <td><input type="text" placeholder="Enter Death - Sum Insured Amount" class="form-control" [(ngModel)]="sumInsuredAmount" /></td>
-  </tr>
-  <tr>
-    <td>
-      <button class="btn btn-primary" (click)="calculatePremium()">Calculate</button>
-    </td>
-  </tr>
-</table>
-<br />
-<div>
-  <p>Monthly Premium</p>
-  <strong>{{ premiumAmount }}</strong>
-</div>
