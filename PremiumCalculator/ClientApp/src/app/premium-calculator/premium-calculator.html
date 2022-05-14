@@ -1,0 +1,62 @@
+
+<div style="text-align:center">
+  <h1>
+    Premium Calculator
+  </h1>
+</div>
+<h3>Member Profile </h3>
+<table>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      <input id="txtName" name="Name" class="form-control" placeholder="Enter Your Fullname" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Date of Birth
+    </td>
+    <td>
+      <input id="txtDOB" name="DOB" class="form-control"
+             placeholder="Enter Your Date of Birth" type="date" (change)="calculateAge($event)" />
+    </td>
+  </tr>
+  <tr>
+    <td><label>Age</label></td>
+    <td><input type="text" class="form-control" disabled [(ngModel)]="showAge" placeholder="Age" /></td>
+  </tr>
+  <tr>
+    <td>
+      Occupation
+    </td>
+    <td>
+      <select (change)="selectedOccupationChange($event)">
+        <option *ngFor="let occupation of occupations" value={{occupation.rating}}>
+          {{occupation.name}}
+        </option>
+      </select>
+      <select name="occupation"
+              id="occupation"
+              class="form-control">
+        <option>1</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr>
+    <td><label>Death - Sum Insured</label></td>
+    <td><input type="text" placeholder="Enter Death - Sum Insured Amount" class="form-control" [(ngModel)]="sumInsuredAmount" /></td>
+  </tr>
+  <tr>
+    <td>
+      <button class="btn btn-primary" (click)="calculatePremium()">Calculate</button>
+    </td>
+  </tr>
+</table>
+<br />
+<div>
+  <p>Monthly Premium</p>
+  <strong>{{ premiumAmount }}</strong>
+</div>
