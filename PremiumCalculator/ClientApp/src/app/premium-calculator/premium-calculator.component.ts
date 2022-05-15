@@ -5,14 +5,19 @@ import { Component, Inject } from '@angular/core';
   templateUrl: './premium-calculator.html'
 })
 export class PremiumCalculatorComponent {
-  public showAge!: number;
-  premiumAmount = 0;
+  showAge!: number;
+  premiumAmount: number = 0;
   sumInsuredAmount = 0;
   selectedOccupation: string = '';
   occupationFactor: any;
   occupations!: OccupationList[];
   baseServiceUrl: string = '';
-   
+  today: Date = new Date();
+  currentYear: number = this.today.getFullYear();
+  currentMonth: number = this.today.getMonth();
+  currentDay: number = this.today.getDate();
+  maxDate: string = new Date(this.currentYear, this.currentMonth, this.currentDay).toLocaleDateString();
+
   constructor(public http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<OccupationList[]>(baseUrl + 'occupationlist').subscribe(result => {
       this.occupations = result;
@@ -42,10 +47,12 @@ export class PremiumCalculatorComponent {
         }
       }, error => console.error(error));
 
-  }     
-  public calculatePremium() {  
-      //Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
+  }
+  public calculatePremium() {
+    //Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
+    if (this.showAge != undefined) {
       this.premiumAmount = (this.sumInsuredAmount * this.occupationFactor * this.showAge) / 1000 * 12;
+    }
   }
 }
 interface OccupationList {
