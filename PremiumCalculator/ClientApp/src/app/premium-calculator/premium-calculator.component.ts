@@ -7,10 +7,10 @@ import { Component, Inject } from '@angular/core';
 export class PremiumCalculatorComponent {
   showAge!: number;
   premiumAmount: number = 0;
-  sumInsuredAmount = 0;
+  sumInsuredAmount!: number;
   selectedOccupation: string = '';
   occupationFactor: any;
-  occupations!: OccupationList[];
+  occupations: OccupationList[] = [];
   baseServiceUrl: string = '';
   today: Date = new Date();
   currentYear: number = this.today.getFullYear();
@@ -49,7 +49,7 @@ export class PremiumCalculatorComponent {
   }
   public calculatePremium() {
     //Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
-    if (this.showAge != undefined && this.occupationFactor != undefined) {
+    if (this.sumInsuredAmount != undefined && this.showAge != undefined && this.occupationFactor != undefined) {
       this.premiumAmount = (this.sumInsuredAmount * this.occupationFactor * this.showAge) / 1000 * 12;
       this.premiumAmount = parseFloat(this.premiumAmount.toFixed(2));
     }

@@ -15,7 +15,7 @@
                minlength="2"
                maxlength="30"
                pattern="[a-z A-Z ]*" placeholder="Enter Your Fullname" />
-        <span *ngIf="name.touched && name.invalid" 
+        <span *ngIf="name.touched && name.invalid"
               style="color:red; font-size:small;">
           Name is required and can have only alphabets.
         </span>
@@ -25,15 +25,15 @@
           Date of Birth
         </label>
         <input id="txtDOB" name="dob" class="form-control" type="date" required (change)="calculateAge($event)"
-               ngModel #dob="ngModel" max="{{maxDate | date:'yyyy-MM-dd'}}"/>
+               ngModel #dob="ngModel" max="{{maxDate | date:'yyyy-MM-dd'}}" />
         <span *ngIf="dob.touched && dob.invalid"
               style="color:red; font-size:small;">
           Date of Birth is required.
         </span>
       </div>
       <div class="form-group">
-        <label>Age</label><input type="text" class="form-control" name="showAge" disabled [(ngModel)]="showAge"
-                                  placeholder="Age calculates based on provided DOB" />
+        <label>Age</label><input type="text" id="txtAge" class="form-control" name="showAge" disabled [(ngModel)]="showAge"
+                                 placeholder="Age calculates based on provided DOB" />
       </div>
     </div>
     <div class="form-group">
@@ -41,7 +41,7 @@
         Occupation
       </label>
       <select (change)="selectedOccupationChange($event)" name="occupation" class="form-control"
-              required ngModel #occupation="ngModel">
+              required ngModel #occupation="ngModel" id="sltOccupation">
         <option value="" disabled selected>Select Occupation</option>
         <option *ngFor="let occupation of occupations" value={{occupation.rating}}>
           {{occupation.name}}
@@ -54,23 +54,23 @@
     </div>
     <div class="form-row">
       <label>Death - Sum Insured</label>
-      <input type="text" placeholder="Enter Death - Sum Insured Amount" name="sumInsured"
+      <input type="text" id="txtSumInsured" placeholder="Enter Death - Sum Insured Amount" name="sumInsured"
              required class="form-control" [(ngModel)]="sumInsuredAmount"
              pattern="^[0-9]*$"
              ngModel #sumInsured="ngModel" />
       <span *ngIf="sumInsured.touched && sumInsured.invalid"
             style="color:red; font-size:small;">
-       
+
         Death - Sum Insured Amount is required and can have only digits.
       </span>
     </div>
-    <div>      
-      <button class="btn btn-primary" [disabled]="userform.invalid" (click)="calculatePremium()" ng-disabled="formname.$invalid">Calculate</button>
+    <div>
+      <button class="btn btn-primary" id="btnCalculatePremium" [disabled]="userform.invalid" (click)="calculatePremium()" ng-disabled="formname.$invalid">Calculate</button>
     </div>
     <br />
     <div class="form-row" style="margin-right:40%;">
       <span style="font-size:18px;">Monthly Death Premium</span>
-      <strong class="right">{{ premiumAmount }}</strong>
+      <strong class="right" id="stgPremiumAmount">{{ premiumAmount }}</strong>
     </div>
   </div>
 </form>
