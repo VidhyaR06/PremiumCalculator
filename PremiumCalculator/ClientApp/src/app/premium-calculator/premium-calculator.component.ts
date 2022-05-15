@@ -51,6 +51,7 @@ export class PremiumCalculatorComponent {
     //Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
     if (this.showAge != undefined && this.occupationFactor != undefined) {
       this.premiumAmount = (this.sumInsuredAmount * this.occupationFactor * this.showAge) / 1000 * 12;
+      this.premiumAmount = parseFloat(this.premiumAmount.toFixed(2));
     }
   }
 }

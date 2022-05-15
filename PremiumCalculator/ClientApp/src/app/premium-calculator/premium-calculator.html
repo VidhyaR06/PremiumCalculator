@@ -1,13 +1,10 @@
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
-</script>
 <div style="margin-top:1%;">
-  <h3>
-    Monthly Death Premium Calculator
-  </h3>
+  <h3>Monthly Death Premium Calculator</h3>
   <br />
 </div>
-<h5>Member Profile </h5>
+<h5>Member Profile</h5>
+<span style="float:right"><font color="#ff0000">*</font> indicates required fields.</span>
 <form #userform="ngForm" (ngSubmit)="calculatePremium()">
   <div class="form-group required">
     <div class="form-row">
@@ -67,11 +64,11 @@
         Death - Sum Insured Amount is required and can have only digits.
       </span>
     </div>
-    <div>
+    <div>      
       <button class="btn btn-primary" [disabled]="userform.invalid" (click)="calculatePremium()" ng-disabled="formname.$invalid">Calculate</button>
     </div>
     <br />
-    <div class="form-row" style="margin-right:60%;">
+    <div class="form-row" style="margin-right:40%;">
       <span style="font-size:18px;">Monthly Death Premium</span>
       <strong class="right">{{ premiumAmount }}</strong>
     </div>
