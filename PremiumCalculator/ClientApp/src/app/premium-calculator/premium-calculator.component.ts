@@ -35,7 +35,6 @@ export class PremiumCalculatorComponent {
   }
   //event handler for the select element's change event
   selectedOccupationChange(event: any) {
-    //update the ui
     this.selectedOccupation = event.target.value;
     const url = this.baseServiceUrl + 'occupationlist/getOccupationFactor/' + this.selectedOccupation;
     this.http.get(url).
@@ -50,7 +49,7 @@ export class PremiumCalculatorComponent {
   }
   public calculatePremium() {
     //Death Premium = (Death Cover amount * Occupation Rating Factor * Age) /1000 * 12
-    if (this.showAge != undefined) {
+    if (this.showAge != undefined && this.occupationFactor != undefined) {
       this.premiumAmount = (this.sumInsuredAmount * this.occupationFactor * this.showAge) / 1000 * 12;
     }
   }
