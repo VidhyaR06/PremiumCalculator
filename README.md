@@ -9,7 +9,7 @@ Monthly Death Premium Calculation = (Death Cover amount * Occupation Rating Fact
 
 1. All the input fields are required.
 2. Based on the date of birth entered in the input, 'age' will be calculated and displayed in the field.
-3. On change of the Occupation selection, the monthly death premium amount varies.
+3. On change of the Occupation selection and click on Calculate button, the monthly death premium amount varies.
 
 ## Installation and Run the Project
 ### Prerequisites
@@ -34,7 +34,7 @@ npm start
 
 #### Unit testing:
  1. Launch the application and check manually.
- 2. Unit test cases are written as spec.ts and handled the validations and happy path test case. To view those assertions, run the below commands.
+ 2. Unit test cases are written as oremium-calculator.component.spec.ts and handled the validations and happy path test case. To view those assertions, run the below commands.
   
       cd PremiumCalculator <br/>
       cd ClientApp <br/>
